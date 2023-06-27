@@ -112,14 +112,14 @@ WHERE last_name LIKE 'E%'
 ORDER BY hire_date;
 -- Find all employees hired in the 90s and born on Christmas. 
 -- Sort the results so that the oldest employee who was hired last is the first result. 
--- Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, *346 returned.
-		-- oldest employee who was hired last is Lucian Menhoudj
+-- Enter a comment with the number of employees returned, the name of the oldest employee who was hired last, *362 returned.
+		-- oldest employee who was hired last is Khun Bernini
 -- and the name of the youngest employee who was hired first.
-		-- Lena Lenart
+		-- Douadi Pettis
 SELECT last_name, first_name, hire_date, birth_date, emp_no
 FROM employees
-WHERE hire_date LIKE '199%-12-25'
-ORDER BY birth_date DESC, hire_date ASC;
+WHERE hire_date LIKE '199%-%%-%%' AND birth_date LIKE '%%%%-12-25'
+ORDER BY birth_date ASC, hire_date DESC;
 
 
 -- MySQL provides a way to return only unique results from our queries with the keyword DISTINCT. 
@@ -133,24 +133,24 @@ FROM employees
 ORDER BY last_name DESC
 LIMIT 10;
 -- Find all previous or current employees hired in the 90s and born on Christmas. 
-SELECT DISTINCT last_name, hire_date
-FROM employees
-WHERE hire_date LIKE ('199%-12-25')
-ORDER BY hire_date ASC
-LIMIT 5;
 -- Find the first 5 employees hired in the 90's by sorting by hire date 
 -- and limiting your results to the first 5 records. 
+SELECT DISTINCT last_name, hire_date
+FROM employees
+WHERE birth_date LIKE '%12-25' AND hire_date LIKE ('199%')
+ORDER BY hire_date ASC
+LIMIT 5;
 -- Write a comment in your code that lists the five names of the employees returned.
-		-- Alameldin, Baak, Baba, Baezner, Benaini
+		-- Cappello, Mandell, Schreiter, Kushner, Stroustrup
 -- Try to think of your results as batches, sets, or pages. 
 -- The first five results are your first page. 
 -- The five after that would be your second page, etc. 
 -- Update the query to find the tenth page of results.
-SELECT last_name, hire_date
+SELECT DISTINCT last_name, hire_date
 FROM employees
-WHERE hire_date LIKE ('199%-12-25')
+WHERE birth_date LIKE '%12-25' AND hire_date LIKE ('199%')
 ORDER BY hire_date ASC
-LIMIT 5 OFFSET 50;
+LIMIT 5 OFFSET 45;
 -- LIMIT and OFFSET can be used to create multiple pages of data. 
 -- What is the relationship between OFFSET (number of results to skip), 
 -- LIMIT (number of results per page), and the page number?
