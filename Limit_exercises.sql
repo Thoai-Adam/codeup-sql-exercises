@@ -153,4 +153,6 @@ ORDER BY hire_date ASC
 LIMIT 5 OFFSET 45;
 -- LIMIT and OFFSET can be used to create multiple pages of data. 
 -- What is the relationship between OFFSET (number of results to skip), 
+		-- OFFSET would select a specific page of data, LIMIT would define the number of pages displayed from the page
 -- LIMIT (number of results per page), and the page number?
+		-- 
