@@ -131,15 +131,16 @@ FROM employees
 WHERE last_name LIKE 'E%E';
 -- Convert the names produced in your last query to all uppercase.
 -- Use a function to determine how many results were returned from your previous query.
-		-- 899 rows
+SELECT COUNT(CONCAT (UPPER(first_name),' ', UPPER(last_name)))
+FROM employees
+WHERE last_name LIKE 'E%E';
+-- could be wrote as SELECT COUNT(*) AS result_count
 -- Find all employees hired in the 90s and born on Christmas. 
 -- Use datediff() function to find how many days they have been working at the company 
-SELECT *
+-- (Hint: You will also need to use NOW() or CURDATE()),
+SELECT emp_no, first_name, last_name, DATEDIFF(NOW(), hire_date)  AS days_tortured
 FROM employees
 WHERE hire_date LIKE '199%-%%-%%' AND birth_date LIKE '%12-25';
--- (Hint: You will also need to use NOW() or CURDATE()),
-SELECT emp_no, first_name, last_name, DATEDIFF(NOW(), hire_date) AS days_tortured
-FROM employees;
 -- Find the smallest and largest current salary from the salaries table. *38623 - 158220
 SELECT MIN(salary) AS small_money, MAX(salary) AS large_money
 FROM salaries;
@@ -149,10 +150,12 @@ FROM salaries;
 -- employee was born, and the last two digits of the year that they were born. 
 -- Below is an example of what the first 10 rows will look like:
 SELECT CONCAT(
-  LOWER(SUBSTR(first_name, 1, 1)),
-  SUBSTR(last_name, 1, 4),
-  DATE_FORMAT(birth_date, '%m%y')
-) AS username
+SUBSTR(LOWER(first_name), 1, 1),
+SUBSTR(LOWER(last_name), 1, 4),
+'_', 
+DATE_FORMAT(LOWER(birth_date), '%m%y') 
+) 
+AS username, first_name, last_name, birth_date
 FROM employees;
 
 
