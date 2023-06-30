@@ -76,6 +76,14 @@ FROM employees
 JOIN dept_manager ON employees.emp_no = dept_manager.emp_no
 WHERE employees.gender = 'F' AND dept_manager.to_date = '9999-01-01';
 
+SELECT CONCAT(first_name, ' ', last_name) AS Full_name
+FROM employees
+where emp_no IN (
+	Select emp_no
+    FROM dept_manager
+    WHERE to_date > Curdate()
+) AND gender = 'F';
+
 #Find all the employees who currently have a higher salary than the companies overall, historical average salary.
 SELECT AVG(salary) FROM salaries;
 
@@ -83,6 +91,13 @@ SELECT *
 FROM employees 
 JOIN salaries on salaries.emp_no = employees.emp_no
 WHERE salary > (SELECT AVG(salary) FROM salaries) and salaries.to_date = '9999-01-01';
+
+SELECT Count(*) As total
+FROM salaries
+WHERE salary > (
+	SELECT AVG(salary)
+    FROM salaries
+) AND to_date > CURDATE();
 
 #How many current salaries are within 1 standard deviation of the current highest salary?
 # (Hint: you can use a built in function to calculate the standard deviation.) 
