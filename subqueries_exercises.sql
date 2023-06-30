@@ -13,6 +13,8 @@ WHERE hire_date = (SELECT hire_date
 	FROM employees 
 	Where emp_no = '101010') AND to_date = "9999-01-01";
     
+-- write without join 
+
 SELECT *
 FROM employees
 WHERE hire_date = (
@@ -35,6 +37,28 @@ FROM employees
 JOIN titles ON employees.emp_no = titles.emp_no
 WHERE employees.first_name = 'Aamod'
     AND titles.to_date = '9999-01-01';
+    
+    
+SELECT *
+FROM employees
+WHERE to_date = (
+	SELECT emp_no 
+    FROM dept_emp
+    WHERE to_date = '9999-01-01')
+AND first_name =(
+	SELECT emp_no 
+    FROM employees
+    WHERE first_name = 'Aamod');
+
+SELECT employees.first_name, (
+    SELECT title
+    FROM titles
+    WHERE titles.emp_no = employees.emp_no
+      AND titles.to_date = '9999-01-01'
+) AS title
+FROM employees
+WHERE employees.first_name = 'Aamod';
+
 
 #How many people in the employees table are no longer working for the company? 
 #Give the answer in a comment in your code. 203184 not working
