@@ -102,3 +102,7 @@ SELECT emp_no, AVG(salary)
 FROM salaries
 GROUP BY emp_no
 HAVING AVG(salary) BETWEEN 80000 AND 90000;
+
+SELECT *
+FROM employees
+ORDER BY emp_no DESC, n;

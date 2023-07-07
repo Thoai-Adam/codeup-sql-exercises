@@ -1,5 +1,8 @@
 USE employees;
--- Write a query that returns all employees, their department number, their start date, their end date, and a new column 'is_current_employee' that is a 1 if the employee is still with the company and 0 if not. DO NOT WORRY ABOUT DUPLICATE EMPLOYEES.
+-- Write a query that returns all employees, 
+-- their department number, their start date, their end date, 
+-- and a new column 'is_current_employee' that is a 1 if the employee is 
+-- still with the company and 0 if not. DO NOT WORRY ABOUT DUPLICATE EMPLOYEES.
 SELECT
     CONCAT(employees.first_name,
             ' ',

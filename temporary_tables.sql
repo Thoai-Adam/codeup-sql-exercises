@@ -103,3 +103,7 @@ FROM somerville.zscore_salaries);
 UPDATE somerville2272.zscore_dept_salaries SET dept_zscore = (zsore_dept_salaries.avg_dept_salary);
 
 UPDATE somerville2272.zscore_dept_salaries SET dept_zscore = (avg_dept_salary - overall_avg)/overall_stddev;
+
+
+
+-- ENTRY TIcket for SQL: My favorite element of SQL is the wild card which can be really flexible in between apotrophe. 
